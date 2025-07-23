@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>티켓링크 예매 헬퍼</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0; padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+  .input-area {
+    padding: 10px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+  }
+  #urlInput {
+    flex-grow: 1;
+    font-size: 1rem;
+    padding: 8px;
+  }
+  #goBtn {
+    padding: 8px 16px;
+    margin-left: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  #defaultLinkBtn {
+    padding: 8px 16px;
+    margin: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="input-area">
+  <input id="urlInput" type="text" placeholder="URL 입력" />
+  <button id="goBtn">접속 (새창)</button>
+</div>
+
+<button id="defaultLinkBtn">기본 티켓링크 스포츠 페이지 열기</button>
+
+<script>
+  const urlInput = document.getElementById('urlInput');
+  const goBtn = document.getElementById('goBtn');
+  const defaultLinkBtn = document.getElementById('defaultLinkBtn');
+
+  function openInNewWindow(url) {
+    if (!url) {
+      alert('URL을 입력해주세요.');
+      return;
+    }
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'https://' + url;
+    }
+    // window.open 실행, 새 탭/창으로 열기
+    const newWindow = window.open(url, '_blank');
+    if (!newWindow) {
+      alert('팝업 차단이 되어 있습니다. 팝업 허용 후 다시 시도해주세요.');
+    }
+  }
+
+  goBtn.addEventListener('click', () => {
+    openInNewWindow(urlInput.value.trim());
+  });
+
+  defaultLinkBtn.addEventListener('click', () => {
+    openInNewWindow('https://www.ticketlink.co.kr/sports');
+  });
+</script>
+
+</body>
+</html>
