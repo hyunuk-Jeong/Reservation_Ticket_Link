@@ -22,21 +22,21 @@
 <iframe id="contentFrame" src="https://www.ticketlink.co.kr/sports"></iframe>
 
 <script>
-  const urlInput = document.getElementById('urlInput');
   const goBtn = document.getElementById('goBtn');
-  const contentFrame = document.getElementById('contentFrame');
+  const urlInput = document.getElementById('urlInput');
 
-  goBtn.addEventListener('click', () => {
+  goBtn.onclick = () => {
     let url = urlInput.value.trim();
     if (!url) {
-      alert('URL을 입력해주세요.');
+      alert('URL 입력하세요');
       return;
     }
     if (!/^https?:\/\//i.test(url)) {
       url = 'https://' + url;
     }
-    contentFrame.src = url;
-  });
+    // 이렇게 하면 사용자가 입력한 URL로 새 창 열림
+    window.open(url);
+  }
 </script>
 
 </body>
